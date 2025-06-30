@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Home, BarChart3, Database, ChevronRight, FileText } from 'lucide-react';
+import Papa from 'papaparse';
 
 const DataCatalog = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -8,75 +9,21 @@ const DataCatalog = () => {
   const [entities, setEntities] = useState([]);
   const [metrics, setMetrics] = useState([]);
 
-  // Mock data - replace with your CSV data
+  // Load data from CSV files in the public directory
   useEffect(() => {
-    const sampleEntities = [
-      {
-        Product: 'Sales Analytics',
-        Entity: 'Customer Orders',
-        EntityType: 'Fact Table',
-        Description: 'Contains all customer order transactions with detailed line items',
-        Grain: 'Order Line Item',
-        ProductSpecific: 'Yes',
-        BaseTable: 'dim_orders'
-      },
-      {
-        Product: 'Finance',
-        Entity: 'Revenue Recognition',
-        EntityType: 'Fact Table',
-        Description: 'Monthly revenue recognition data by product and region',
-        Grain: 'Month/Product/Region',
-        ProductSpecific: 'Yes',
-        BaseTable: 'fact_revenue'
-      },
-      {
-        Product: 'HR Analytics',
-        Entity: 'Employee Performance',
-        EntityType: 'Dimension Table',
-        Description: 'Employee performance metrics and ratings',
-        Grain: 'Employee/Period',
-        ProductSpecific: 'No',
-        BaseTable: 'dim_employees'
-      }
-    ];
+    async function loadCsv(path) {
+      const response = await fetch(path);
+      const text = await response.text();
+      return Papa.parse(text, { header: true, skipEmptyLines: true }).data;
+    }
 
-    const sampleMetrics = [
-      {
-        metricName: 'Monthly Recurring Revenue',
-        type: 'Financial',
-        description: 'Total recurring revenue generated each month from subscription products',
-        grain: 'Month',
-        sourceTables: 'fact_subscriptions, dim_products',
-        dependsOn: 'Active Subscriptions, Product Pricing',
-        formulaDAX: 'SUMX(fact_subscriptions, fact_subscriptions[monthly_amount] * fact_subscriptions[is_active])',
-        formulaHumanReadable: 'Sum of (Monthly Amount × Active Flag) for all subscriptions',
-        requiredColumns: 'monthly_amount, is_active, subscription_date',
-        businessRules: 'Only include active subscriptions, exclude one-time payments',
-        dateLogic: 'Current month snapshot, updated daily',
-        dwVsRawNotes: 'DW aggregates by month, raw data is daily transactions',
-        usedInReports: 'Executive Dashboard, Finance Monthly Report',
-        notes: 'Critical metric for board reporting'
-      },
-      {
-        metricName: 'Customer Acquisition Cost',
-        type: 'Marketing',
-        description: 'Average cost to acquire a new customer including all marketing expenses',
-        grain: 'Month/Channel',
-        sourceTables: 'fact_marketing_spend, fact_new_customers',
-        dependsOn: 'Marketing Spend, New Customers',
-        formulaDAX: 'DIVIDE(SUM(fact_marketing_spend[amount]), COUNT(fact_new_customers[customer_id]))',
-        formulaHumanReadable: 'Total Marketing Spend ÷ Number of New Customers',
-        requiredColumns: 'marketing_amount, customer_id, acquisition_date, channel',
-        businessRules: 'Include all marketing channels, exclude organic acquisition',
-        dateLogic: 'Monthly calculation, 3-month rolling average',
-        dwVsRawNotes: 'DW pre-calculates by channel, raw data tracks individual campaigns',
-        usedInReports: 'Marketing Performance Dashboard, CAC Payback Analysis',
-        notes: 'Exclude enterprise deals over $100K for SMB analysis'
-      }
-    ];
-
-    setEntities(sampleEntities);
-    setMetrics(sampleMetrics);
+    Promise.all([
+      loadCsv('/data/entities.csv'),
+      loadCsv('/data/metrics.csv'),
+    ]).then(([entityData, metricData]) => {
+      setEntities(entityData);
+      setMetrics(metricData);
+    });
   }, []);
 
   const filteredEntities = entities.filter(entity =>
