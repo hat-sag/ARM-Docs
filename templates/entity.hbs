@@ -1,0 +1,40 @@
+<h2 id="summary">Entities Summary Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entity</th>
+      <th>Entity Type</th>
+      <th>Product</th>
+      <th>Description</th>
+      <th>Grain</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each entities}}
+    <tr>
+      <td><a href="#{{dash Entity}}">{{Entity}}</a></td>
+      <td>{{EntityType}}</td>
+      <td>{{Product}}</td>
+      <td>{{Description}}</td>
+      <td>{{Grain}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<hr>
+
+{{#each entities}}
+<h3 id="{{dash Entity}}">{{Entity}}</h3>
+<ul>
+  <li><strong>Entity Type:</strong> {{EntityType}}</li>
+  <li><strong>Product:</strong> {{Product}}</li>
+  <li><strong>Description:</strong> {{Description}}</li>
+  <li><strong>Grain:</strong> {{Grain}}</li>
+  <li><strong>Product Specific:</strong> {{ProductSpecific}}</li>
+  <li><strong>Base Table:</strong> {{BaseTable}}</li>
+</ul>
+<p><a href="#top">⬆️ Back to top</a></p>
+<hr>
+{{/each}}

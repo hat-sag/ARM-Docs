@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entity Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <div id="sidebar"></div>
+    <div id="main">
+      <h1>Entity Catalog</h1>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="script-entity.js"></script>
+
+  <script id="template" type="text/x-handlebars-template">
+    <h2>Entities Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Type</th>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Grain</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each entities}}
+        <tr>
+          <td><a href="#{{dash Entity}}">{{Entity}}</a></td>
+          <td>{{EntityType}}</td>
+          <td>{{Product}}</td>
+          <td>{{Description}}</td>
+          <td>{{Grain}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <hr>
+
+    {{#each entities}}
+    <h3 id="{{dash Entity}}">{{Entity}}</h3>
+    <ul>
+      <li><strong>Product:</strong> {{Product}}</li>
+      <li><strong>Entity Type:</strong> {{EntityType}}</li>
+      <li><strong>Description:</strong> {{Description}}</li>
+      <li><strong>Grain:</strong> {{Grain}}</li>
+      <li><strong>Product Specific:</strong> {{ProductSpecific}}</li>
+      <li><strong>Base Table:</strong> {{BaseTable}}</li>
+    </ul>
+    <p><a href="#top">⬆️ Back to top</a></p>
+    <hr>
+    {{/each}}
+  </script>
+</body>
+</html>

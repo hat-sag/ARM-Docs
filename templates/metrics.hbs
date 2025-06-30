@@ -1,0 +1,45 @@
+<h2 id="summary">Metrics Summary Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Grain</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each metrics}}
+    <tr>
+      <td><a href="#{{dash metricName}}">{{metricName}}</a></td>
+      <td>{{type}}</td>
+      <td>{{description}}</td>
+      <td>{{grain}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<hr>
+
+{{#each metrics}}
+<h3 id="{{dash metricName}}">{{metricName}}</h3>
+<ul>
+  <li><strong>Type:</strong> {{type}}</li>
+  <li><strong>Description:</strong> {{description}}</li>
+  <li><strong>Grain:</strong> {{grain}}</li>
+  <li><strong>Source Tables:</strong> {{sourceTables}}</li>
+  <li><strong>Depends On:</strong> {{dependsOn}}</li>
+  <li><strong>Formula DAX:</strong> <code>{{formulaDAX}}</code></li>
+  <li><strong>Formula (Human):</strong> {{formulaHumanReadable}}</li>
+  <li><strong>Required Columns:</strong> {{requiredColumns}}</li>
+  <li><strong>Business Rules:</strong> {{businessRules}}</li>
+  <li><strong>Date Logic:</strong> {{dateLogic}}</li>
+  <li><strong>DW vs Raw Notes:</strong> {{dwVsRawNotes}}</li>
+  <li><strong>Used in Reports:</strong> {{usedInReports}}</li>
+  <li><strong>Notes:</strong> {{notes}}</li>
+</ul>
+<p><a href="#top">⬆️ Back to top</a></p>
+<hr>
+{{/each}}
