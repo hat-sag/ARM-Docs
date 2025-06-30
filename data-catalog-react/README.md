@@ -1,6 +1,6 @@
 # Data Catalog React Example
 
-This directory contains a small React application showcasing a data catalog UI. It uses Vite for development and Tailwind CSS for styling.
+This directory contains a small React application showcasing a data catalog UI. It uses Vite for development and Tailwind CSS for styling. The production build outputs to the `build` directory so it works with the Vercel static builder.
 
 ## Setup
 

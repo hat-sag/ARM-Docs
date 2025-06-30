@@ -6,3 +6,4 @@ node_modules/
 # Vite
 data-catalog-react/dist/
 data-catalog-react/node_modules/
+data-catalog-react/build/
