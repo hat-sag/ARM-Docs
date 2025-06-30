@@ -1,0 +1,23 @@
+﻿Product,Entity,Entity Type,Description,Grain,Product Specific?,Base Table
+L&B,Event Type,Dimension,"A general log of key events like Move-In, Move-Out, Rate Increase, Payor Change.",Resident + Unit + Event + Date,Yes,ARM.luEventType
+L&B,Community,Dimension,A property or building where residents reside.,One row per community.,No,ARM.tblCommunity
+L&B,Customer,Dimension,"The person entity. Customers exist in the system whether they are prospects, inquiries, active residents, former residents, or never move in.",One row per customer.,No,ARM.tblCustomer
+L&B,Unit,Dimension,A rentable space in a community (room or unit).,"One row per room/unit,",No,ARM.tblProductInventory
+L&B,Referral,Dimension,A person or org that referred the resident.,One row per referral source.,Yes,CRM.tblReferral
+L&B,Inquiry,Dimension,A prospect’s initial contact indicating interest in occupancy.,Inquiry + Customer + Community + Care Type,Yes,CRM.tblInquiry
+L&B,Resident Payor,Dimension,The payment source for a resident’s services,Resident + Lease + Entry + Unit,Yes,ARM.tblResidentPayor
+L&B,Move-In,Fact,A resident’s entry event into occupancy.,One row per Customer + Lease,No,ARM.tblResidentMoveIn
+L&B,Move-Out,Fact,A resident’s exit from occupancy.,One row per Customer + Lease,No,ARM.tblResidentMoveOut
+L&B,Rate Increase,Fact,A financial event increasing a resident’s rate.,Resident + Entry Type + Effective Date,Yes,RateIncrease.tblRateIncrease
+L&B,Ledger Entry,Fact,"A financial transaction line (rent, care, ancillary, discount, etc.).",One row per Entry,Yes,ARM.tblLedgerEntry
+L&B,Resident Room,Fact,"The history of room/bed assignments, rate changes, physical movements within the lease.",Customer + Unit + Date + Event,Yes,ARM.tblResidentRoom
+L&B,Resident Primary Care,Fact,Resident service plan.,Resident + Care Level + Date,No,ARM.tblResidentCarePrimary
+L&B,Resident Ancillary Care,Fact,A set of ancillary services provided to the resident.,Resident + Ancillary Service + Date,No,ARM.tblResidentCareAncillary
+L&B,Reservation,Fact,A planned future occupancy.,Resident + Unit + Date,No,ARM.tblReservation
+L&B,Scheduled Move Out,Fact,A planned future end of an active lease.,Resident + Date + Community,Yes,ARM.tblMoveOutSchedule
+L&B,Short Term Leave,Relationship,A temporary leave where the resident vacates but does not terminate occupancy.,Resident + Leave,No,ARM.tblShortTermLeave
+L&B,Lease,Relationship,The overall contractual stay period at a community.,One row per lease.,Yes,ARM.tblCustomer
+L&B,Primary Care,Dimension,The type of care the resident is receiving.,One row per care level.,Yes,ARM.luCare
+L&B,Payor Type,Dimension,The type of payor,One row per payor type.,Yes,ARM.luPayor
+L&B,Ancillary Care,Dimension,The series of ancillary services.,One row per service,Yes,ARM.luCareAncillary
+,Ledger Entry Type,Classification,The type of ledger entry.,One row per entry type.,Yes,ARM.luEntryType
