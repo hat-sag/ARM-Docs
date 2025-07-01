@@ -75,8 +75,8 @@ const DataCatalog = () => {
         <p className="text-gray-600">Business metrics with formulas, dependencies, and usage documentation</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="sm:col-span-2">
           <div className="bg-white rounded-lg shadow-sm border">
             <div className="px-6 py-4 border-b">
               <h3 className="text-lg font-semibold text-gray-900">Metrics Summary</h3>
@@ -124,7 +124,7 @@ const DataCatalog = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-1">
+        <div className="sm:col-span-1">
           {selectedItem && selectedItem.type === 'metric' ? (
             <div className="bg-white rounded-lg shadow-sm border">
               <div className="px-6 py-4 border-b">
@@ -192,8 +192,8 @@ const DataCatalog = () => {
         <p className="text-gray-600">Data entities, tables, and dimensional structures</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="sm:col-span-2">
           <div className="bg-white rounded-lg shadow-sm border">
             <div className="px-6 py-4 border-b">
               <h3 className="text-lg font-semibold text-gray-900">Entities Summary</h3>
@@ -242,7 +242,7 @@ const DataCatalog = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-1">
+        <div className="sm:col-span-1">
           {selectedItem && selectedItem.type === 'entity' ? (
             <div className="bg-white rounded-lg shadow-sm border">
               <div className="px-6 py-4 border-b">
@@ -297,7 +297,7 @@ const DataCatalog = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-3">
               <div className="bg-blue-600 p-2 rounded-lg">
@@ -321,7 +321,7 @@ const DataCatalog = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex">
           {/* Sidebar */}
           <div className="w-64 bg-white shadow-sm border-r min-h-screen p-6">
