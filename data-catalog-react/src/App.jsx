@@ -1,4 +1,4 @@
-import DataCatalog from './DataCatalog';
+import DataCatalog from './components/DataCatalog';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
